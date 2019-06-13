@@ -1,0 +1,19 @@
+<table style="width:100%">
+  <tr>
+    <th>Personagem</th>
+    <th>Séries</th>
+    <th>Eventos</th>
+  </tr>
+  <tr *ngFor="let personagem of personagens">
+    <td>
+      <img style="max-width: 10%; height: auto; display: inline" src="{{personagem.imagePath}}" alt="{{personagem.name}}">
+      <p style="display: inline">{{personagem.name}}</p>
+    </td>
+    <td>
+      <p *ngFor="let serie of personagem.series">{{serie.name}}</p>
+    </td>
+    <td>
+        <p *ngFor="let event of personagem.events">{{event.name}}</p>
+    </td>
+  </tr>
+</table>
