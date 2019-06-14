@@ -1,16 +1,34 @@
-<div *ngIf="personagem">
-  <img style="max-width: 12%; height: auto; display: inline" src="{{personagem.imagePath}}">
-  <p>{{personagem.name}}</p>
-  <p>{{personagem.description}}</p>
-  <ul>
-    <li *ngFor="let serie of personagem.series">{{serie.name}}</li>
-  </ul>
-  <ul>
-    <li *ngFor="let event of personagem.events">{{event.name}}</li>
-  </ul>
-  <p>{{personagem.comics}}</p>
-  <p>{{personagem.stories}}</p>
+<div *ngIf="personagem" id="heroiModal" [ngStyle]="{'display': statusModal?'block':'none'}" class="modal">
+  <div class="modal-content">
+    <h2>{{personagem.name}}</h2>
+    <img style="width: 15%; height: auto" src="{{personagem.imagePath}}">
+    <p id="description">{{personagem.description}}</p>
+    <div class="trabalhos">
+      <div class="bloco-modal">
+        <h3>Séries</h3>
+        <p *ngFor="let serie of personagem.series">{{serie.name}}</p>
+        <p *ngIf="personagem.series == 0">Sem nenhuma participação</p>
+      </div>
+      <div class="bloco-modal">
+        <h3>Eventos</h3>
+        <p *ngFor="let event of personagem.events">{{event.name}}</p>
+        <p *ngIf="personagem.events == 0">Sem nenhuma participação</p>
+      </div>
+    </div>
+    <div class="trabalhos">
+      <div class="bloco-modal">
+        <span>{{personagem.comics}}</span>
+        <h4>Aparições em quadrinhos</h4>
+      </div>
+      <div class="bloco-modal">
+        <span>{{personagem.stories}}</span>
+        <h4>Aparições em histórias</h4>
+      </div>
+    </div>
+    <button (click)="statusModal = false">Fechar</button>
+  </div>
 </div>
+
 <div *ngIf="statusBusca">
   <table style="width:100%">
     <tr>
@@ -18,8 +36,9 @@
       <th style="width:25%">Séries</th>
       <th style="width:50%">Eventos</th>
     </tr>
-    <tr *ngFor="let personagem of personagens">
-      <td (click)="infoPersonagem(personagem.id)">
+    <tr class="personagemClique" id="abreModal" (click)="infoPersonagem(personagem.id)"
+      *ngFor="let personagem of personagens">
+      <td>
         <img [ngClass]="{'image-cropper': true}" src="{{personagem.imagePath}}">
         <p style="display: inline">{{personagem.name}}</p>
       </td>
@@ -31,16 +50,13 @@
       </td>
     </tr>
   </table>
-  <div *ngIf="personagens.length !== 1">
-    <button *ngIf="pagina !==0" (click)="anterPg()">-</button>
+  <div class="paginacao">
+    <button *ngIf="pagina > 0" (click)="anterPg()">-</button>
     <p style="display: inline">{{pagina+1}}</p>
-    <button *ngIf="pagina !==149" (click)="proxPg()">+</button>
-  </div>
-  <div *ngIf="personagens.length === 1">
-    <button *ngIf="pagina !==149" (click)="resetTable()">Reiniciar</button>
+    <button *ngIf="pagina < 149" (click)="proxPg()">+</button>
   </div>
 </div>
-<div *ngIf="!statusBusca">
+<div class="erro" *ngIf="!statusBusca">
   <h2>Personagem não encontrado!</h2>
   <p>Entre com um personagem válido, ou reinicie a tabela.</p>
   <button (click)="resetTable()">Reiniciar</button>

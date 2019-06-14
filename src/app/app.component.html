@@ -1,10 +1,12 @@
-<h1><span>Busca Marvel</span> Teste Front-End</h1>
-<h1>{{usuario}}</h1>
-
-<div>
-    <label for="personagemNome">Nome do Personagem:</label>
-    <input [(ngModel)]="character" type="text" name="personagem" id="personagemNome">
-    <button (click)="buscar(character)">Buscar</button>
+<div class="body">
+    <div class="app-titulo">
+        <h1><span>Busca Marvel</span> Teste Front-End</h1>
+        <h1 id="nome">{{usuario}}</h1>
+    </div>
+    <div class="app-control">
+        <label for="personagemNome">Nome do Personagem:</label>
+        <input [(ngModel)]="character" type="text" name="personagem" id="personagemNome">
+        <button (click)="buscar(character)">Buscar</button>
+    </div>
+    <app-personagens [buscaPersonagem]="personagemInput"></app-personagens>
 </div>
-
-<app-personagens    [buscaPersonagem]="personagemInput"></app-personagens>

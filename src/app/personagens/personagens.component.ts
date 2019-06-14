@@ -12,6 +12,7 @@ export class PersonagensComponent implements OnInit, OnChanges {
   public personagem: object = {};
   public pagina: number;
   public statusBusca: boolean;
+  public statusModal: boolean;
 
   @Input() buscaPersonagem: string;
 
@@ -35,7 +36,7 @@ export class PersonagensComponent implements OnInit, OnChanges {
             series: aux[0].series.items.slice(0, 3),
             imagePath: aux[0].thumbnail.path + ".jpg"
           });
-        }else{
+        } else {
           this.statusBusca = false;
         }
       });
@@ -44,8 +45,10 @@ export class PersonagensComponent implements OnInit, OnChanges {
 
   resetTable() {
     this.personagens = [];
+    this.personagem = {};
     this.statusBusca = true;
-    this.pagina = 149;
+    this.statusModal = false;
+    this.pagina = 0;
     this.character.getPersonagens(this.pagina).subscribe((res) => {
       const aux = res['data'].results;
       for (let i = 0; i < aux.length; i++) {
@@ -93,6 +96,7 @@ export class PersonagensComponent implements OnInit, OnChanges {
 
   infoPersonagem(id) {
     this.character.getPersonagem(id).subscribe((res) => {
+      this.statusModal = true;
       const aux = res['data'].results[0];
       this.personagem = {
         id: aux.id,
@@ -105,5 +109,6 @@ export class PersonagensComponent implements OnInit, OnChanges {
         imagePath: aux.thumbnail.path + ".jpg"
       };
     });
+    console.log(this.personagem);
   }
 }

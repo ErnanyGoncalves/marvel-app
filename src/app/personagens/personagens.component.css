@@ -1,7 +1,135 @@
+.personagemClique{
+    cursor: pointer;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    margin: 5% 25%;
+}
+
+.trabalhos{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.bloco-modal{
+    width: 50%;
+}
+
+.modal-content{
+    background-color: white;
+    width: 50%;
+    text-align: center;
+    border: 3px solid #D42026;
+}
+
+.modal-content img{
+    margin: 0 auto;
+    border-radius: 50%;
+    display: block;
+}
+
+.modal-content h2{
+    font-size: 32px;
+    text-decoration: underline;
+    color: #D42026;
+}
+.modal-content h3{
+    font-size: 24px;
+}
+.modal-content h4{
+    font-size: 16px;
+}
+
+.modal-content span{
+    font-size: 28px
+}
+
+
+.modal-content #description{
+    padding: 20px;
+}
+
+.modal-content button, .erro button{
+    border-radius: 3px;
+    background-color: #D42026;
+    color: white;
+    border: 1px solid #D42026;
+    font-size: 16px;
+    height: 31px;
+    cursor: pointer;
+}
+
+.modal-content button{
+    margin-bottom: 20px;
+}
+
 .image-cropper {
     width: 50px;
     height: 50px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+}
+table{
+    margin-top: 34px;
+}
+th{
+    background-color: #D42026;
+    color: white;
+    font-weight: 300;
+    text-align: left;
+    height: 34px;
+}
+
+th, td p, td img{
+    padding-left: 12px;
+}
+
+tr td{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 112px;
+}
+
+
+tr:hover{
+    background-color: rgba(212,32,38, 0.1);
+}
+
+.paginacao{
+    width: 100%;
+    text-align: center;
+}
+
+.paginacao button{
+    height: 30px;
+    width: 30px;
+    font-size: 25px;
+    color: white;
+    background-color: #D42026;
+    border: 1px solid #D42026;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.paginacao p{
+    font-size: 25px;
+}
+
+.erro{
+    width: 25%;
+    text-align: center;
+    border: 3px solid #D42026;
+    margin: 250px auto;
+    padding-bottom: 25px;
 }
