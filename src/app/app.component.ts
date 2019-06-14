@@ -5,6 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  usuario = 'Ernany Daniel de Carvalho Gonçalves';
+export class AppComponent{
+  usuario: string = 'Ernany Daniel de Carvalho Gonçalves';
+  personagemInput: string = "";
+
+  public buscar(nome: string) {
+    this.personagemInput = nome;
+  }
 }

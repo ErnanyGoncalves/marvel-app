@@ -4,7 +4,7 @@
 <div>
     <label for="personagemNome">Nome do Personagem:</label>
     <input [(ngModel)]="character" type="text" name="personagem" id="personagemNome">
-    <p>{{character}}</p>
+    <button (click)="buscar(character)">Buscar</button>
 </div>
 
-<app-personagens></app-personagens>
+<app-personagens    [buscaPersonagem]="personagemInput"></app-personagens>

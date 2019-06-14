@@ -1,19 +1,47 @@
-<table style="width:100%">
-  <tr>
-    <th>Personagem</th>
-    <th>Séries</th>
-    <th>Eventos</th>
-  </tr>
-  <tr *ngFor="let personagem of personagens">
-    <td>
-      <img style="max-width: 10%; height: auto; display: inline" src="{{personagem.imagePath}}" alt="{{personagem.name}}">
-      <p style="display: inline">{{personagem.name}}</p>
-    </td>
-    <td>
-      <p *ngFor="let serie of personagem.series">{{serie.name}}</p>
-    </td>
-    <td>
+<div *ngIf="personagem">
+  <img style="max-width: 12%; height: auto; display: inline" src="{{personagem.imagePath}}">
+  <p>{{personagem.name}}</p>
+  <p>{{personagem.description}}</p>
+  <ul>
+    <li *ngFor="let serie of personagem.series">{{serie.name}}</li>
+  </ul>
+  <ul>
+    <li *ngFor="let event of personagem.events">{{event.name}}</li>
+  </ul>
+  <p>{{personagem.comics}}</p>
+  <p>{{personagem.stories}}</p>
+</div>
+<div *ngIf="statusBusca">
+  <table style="width:100%">
+    <tr>
+      <th style="width:25%">Personagem</th>
+      <th style="width:25%">Séries</th>
+      <th style="width:50%">Eventos</th>
+    </tr>
+    <tr *ngFor="let personagem of personagens">
+      <td (click)="infoPersonagem(personagem.id)">
+        <img [ngClass]="{'image-cropper': true}" src="{{personagem.imagePath}}">
+        <p style="display: inline">{{personagem.name}}</p>
+      </td>
+      <td>
+        <p *ngFor="let serie of personagem.series">{{serie.name}}</p>
+      </td>
+      <td>
         <p *ngFor="let event of personagem.events">{{event.name}}</p>
-    </td>
-  </tr>
-</table>
+      </td>
+    </tr>
+  </table>
+  <div *ngIf="personagens.length !== 1">
+    <button *ngIf="pagina !==0" (click)="anterPg()">-</button>
+    <p style="display: inline">{{pagina+1}}</p>
+    <button *ngIf="pagina !==149" (click)="proxPg()">+</button>
+  </div>
+  <div *ngIf="personagens.length === 1">
+    <button *ngIf="pagina !==149" (click)="resetTable()">Reiniciar</button>
+  </div>
+</div>
+<div *ngIf="!statusBusca">
+  <h2>Personagem não encontrado!</h2>
+  <p>Entre com um personagem válido, ou reinicie a tabela.</p>
+  <button (click)="resetTable()">Reiniciar</button>
+</div>
